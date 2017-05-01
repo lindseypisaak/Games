@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginVC: UIViewController {
 
-    @IBOutlet weak var email: UIView!
-    @IBOutlet weak var password: UIView!
-    
+    @IBOutlet weak var email: LoginTextField!
+    @IBOutlet weak var password: LoginTextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedElsewhere()
+        activityIndicator.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,20 +28,27 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
+        
+        if let email = email.text, let password = password.text, (password.characters.count > 0 && password.characters.count > 0) {
+            
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+            
+            AuthService.instance.login(email: email, password: password, onComplete: { (errorMessage, data) in
+                
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                
+                guard errorMessage == nil else {
+                    self.showAlert(title: "Login Error", message: errorMessage!, handler: nil)
+                    return
+                }
+                
+                self.dismiss(animated: true, completion: nil)
+            })
+            
+        } else {
+            showAlert(title: "All Fields Required", message: "You must fill out all the fields", handler: nil)
+        }
     }
-    
-    @IBAction func backPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

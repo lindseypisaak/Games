@@ -7,5 +7,6 @@ target 'Games' do
 
   # Pods for Games
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 
 end

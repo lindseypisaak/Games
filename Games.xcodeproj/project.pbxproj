@@ -15,10 +15,15 @@
 		C76000101EB1A6DC002C9AB0 /* PasswordResetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760000F1EB1A6DC002C9AB0 /* PasswordResetVC.swift */; };
 		C760FFEC1EB184D6002C9AB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760FFEB1EB184D6002C9AB0 /* AppDelegate.swift */; };
 		C760FFEE1EB184D6002C9AB0 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760FFED1EB184D6002C9AB0 /* RegisterVC.swift */; };
-		C760FFF41EB184D6002C9AB0 /* Games.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C760FFF21EB184D6002C9AB0 /* Games.xcdatamodeld */; };
 		C760FFF61EB184D6002C9AB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760FFF51EB184D6002C9AB0 /* Assets.xcassets */; };
 		C760FFF91EB184D6002C9AB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C760FFF71EB184D6002C9AB0 /* LaunchScreen.storyboard */; };
-		C7DEC9D71EB45BDB00901A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C760FFEF1EB184D6002C9AB0 /* Main.storyboard */; };
+		C7D3874F1EB5261C0058A5F2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D3874E1EB5261C0058A5F2 /* AuthService.swift */; };
+		C7D387531EB531700058A5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7D387521EB531700058A5F2 /* Main.storyboard */; };
+		C7D387571EB531F30058A5F2 /* LeaguesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D387561EB531F30058A5F2 /* LeaguesVC.swift */; };
+		C7D387591EB65F8A0058A5F2 /* AppStoryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D387581EB65F8A0058A5F2 /* AppStoryboards.swift */; };
+		C7D3875B1EB6A0830058A5F2 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D3875A1EB6A0830058A5F2 /* HideKeyboardExtension.swift */; };
+		C7D3875D1EB6A1910058A5F2 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D3875C1EB6A1910058A5F2 /* AlertExtension.swift */; };
+		C7DEC9D71EB45BDB00901A63 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C760FFEF1EB184D6002C9AB0 /* Login.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +36,16 @@
 		C760FFE81EB184D6002C9AB0 /* Games.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Games.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760FFEB1EB184D6002C9AB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C760FFED1EB184D6002C9AB0 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
-		C760FFF01EB184D6002C9AB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C760FFF31EB184D6002C9AB0 /* Games.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Games.xcdatamodel; sourceTree = "<group>"; };
+		C760FFF01EB184D6002C9AB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		C760FFF51EB184D6002C9AB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C760FFF81EB184D6002C9AB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C760FFFA1EB184D6002C9AB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7D3874E1EB5261C0058A5F2 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		C7D387521EB531700058A5F2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C7D387561EB531F30058A5F2 /* LeaguesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaguesVC.swift; sourceTree = "<group>"; };
+		C7D387581EB65F8A0058A5F2 /* AppStoryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryboards.swift; sourceTree = "<group>"; };
+		C7D3875A1EB6A0830058A5F2 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
+		C7D3875C1EB6A1910058A5F2 /* AlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		FD360C8C9BEA7D61E1BC2D4F /* Pods-Games.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Games.release.xcconfig"; path = "Pods/Target Support Files/Pods-Games/Pods-Games.release.xcconfig"; sourceTree = "<group>"; };
 		FDA0FDC8A524112B10D5DA4A /* Pods_Games.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Games.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,6 +73,7 @@
 		C76000021EB18B89002C9AB0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C7D387551EB531DE0058A5F2 /* Leagues */,
 				C760000E1EB1A483002C9AB0 /* Login */,
 			);
 			name = Controller;
@@ -71,8 +82,9 @@
 		C76000031EB18B91002C9AB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C7D3875E1EB6A5470058A5F2 /* Extensions */,
+				C7D387541EB531820058A5F2 /* Leagues */,
 				C760000D1EB1A470002C9AB0 /* Login */,
-				C760FFEF1EB184D6002C9AB0 /* Main.storyboard */,
 				C760FFF71EB184D6002C9AB0 /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -83,7 +95,6 @@
 			children = (
 				C76000001EB185FB002C9AB0 /* GoogleService-Info.plist */,
 				C760FFFA1EB184D6002C9AB0 /* Info.plist */,
-				C760FFF21EB184D6002C9AB0 /* Games.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -91,6 +102,7 @@
 		C760000D1EB1A470002C9AB0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				C760FFEF1EB184D6002C9AB0 /* Login.storyboard */,
 				C76000071EB19772002C9AB0 /* LoginTextField.swift */,
 				C76000091EB19B03002C9AB0 /* LoginButton.swift */,
 			);
@@ -128,6 +140,7 @@
 		C760FFEA1EB184D6002C9AB0 /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				C7D3874D1EB5260E0058A5F2 /* Services */,
 				C76000041EB18B97002C9AB0 /* Model */,
 				C76000031EB18B91002C9AB0 /* View */,
 				C76000021EB18B89002C9AB0 /* Controller */,
@@ -135,6 +148,40 @@
 				C760FFF51EB184D6002C9AB0 /* Assets.xcassets */,
 			);
 			path = Games;
+			sourceTree = "<group>";
+		};
+		C7D3874D1EB5260E0058A5F2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C7D3874E1EB5261C0058A5F2 /* AuthService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		C7D387541EB531820058A5F2 /* Leagues */ = {
+			isa = PBXGroup;
+			children = (
+				C7D387521EB531700058A5F2 /* Main.storyboard */,
+			);
+			name = Leagues;
+			sourceTree = "<group>";
+		};
+		C7D387551EB531DE0058A5F2 /* Leagues */ = {
+			isa = PBXGroup;
+			children = (
+				C7D387561EB531F30058A5F2 /* LeaguesVC.swift */,
+			);
+			name = Leagues;
+			sourceTree = "<group>";
+		};
+		C7D3875E1EB6A5470058A5F2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C7D3875A1EB6A0830058A5F2 /* HideKeyboardExtension.swift */,
+				C7D3875C1EB6A1910058A5F2 /* AlertExtension.swift */,
+				C7D387581EB65F8A0058A5F2 /* AppStoryboards.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		C86642EA8D01324CEAFD1A4F /* Pods */ = {
@@ -211,8 +258,9 @@
 			files = (
 				C760FFF91EB184D6002C9AB0 /* LaunchScreen.storyboard in Resources */,
 				C76000011EB185FB002C9AB0 /* GoogleService-Info.plist in Resources */,
+				C7D387531EB531700058A5F2 /* Main.storyboard in Resources */,
 				C760FFF61EB184D6002C9AB0 /* Assets.xcassets in Resources */,
-				C7DEC9D71EB45BDB00901A63 /* Main.storyboard in Resources */,
+				C7DEC9D71EB45BDB00901A63 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,24 +320,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				C760000A1EB19B03002C9AB0 /* LoginButton.swift in Sources */,
+				C7D387571EB531F30058A5F2 /* LeaguesVC.swift in Sources */,
+				C7D3875B1EB6A0830058A5F2 /* HideKeyboardExtension.swift in Sources */,
+				C7D387591EB65F8A0058A5F2 /* AppStoryboards.swift in Sources */,
 				C760FFEE1EB184D6002C9AB0 /* RegisterVC.swift in Sources */,
+				C7D3875D1EB6A1910058A5F2 /* AlertExtension.swift in Sources */,
 				C760000C1EB19FCB002C9AB0 /* LoginVC.swift in Sources */,
 				C76000081EB19772002C9AB0 /* LoginTextField.swift in Sources */,
 				C76000101EB1A6DC002C9AB0 /* PasswordResetVC.swift in Sources */,
-				C760FFF41EB184D6002C9AB0 /* Games.xcdatamodeld in Sources */,
 				C760FFEC1EB184D6002C9AB0 /* AppDelegate.swift in Sources */,
+				C7D3874F1EB5261C0058A5F2 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C760FFEF1EB184D6002C9AB0 /* Main.storyboard */ = {
+		C760FFEF1EB184D6002C9AB0 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C760FFF01EB184D6002C9AB0 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		C760FFF71EB184D6002C9AB0 /* LaunchScreen.storyboard */ = {
@@ -409,6 +461,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lindseyisaak.Games;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -423,6 +476,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lindseyisaak.Games;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -448,19 +502,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C760FFF21EB184D6002C9AB0 /* Games.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C760FFF31EB184D6002C9AB0 /* Games.xcdatamodel */,
-			);
-			currentVersion = C760FFF31EB184D6002C9AB0 /* Games.xcdatamodel */;
-			path = Games.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C760FFE01EB184D6002C9AB0 /* Project object */;
 }

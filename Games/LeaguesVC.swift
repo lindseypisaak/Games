@@ -43,6 +43,8 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
                             self.leagues[index-1].append(league)
                         }
                         
+                        self.leagues[0].sort(by: { $0.name < $1.name })
+                        self.leagues[1].sort(by: { $0.name < $1.name })
                         self.tableView.reloadData()
                         ActivitySpinnerView.instance.hideProgressView()
                     })
@@ -55,6 +57,16 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         getLeagues()
         refreshControl.endRefreshing()
     }
+    
+    func leaveLeague(leagueArrayIndex: Int) {
+        let league = leagues[0][leagueArrayIndex]
+        leagues[0].remove(at: leagueArrayIndex)
+        
+        LeagueService.instance.removeUserFromLeague(leagueId: league.uid, userId: userId!)
+        UserService.instance.removeLeagueFromUser(userId: userId!, leagueId: league.uid)
+        
+        self.tableView.reloadData()
+    }
 
     func acceptLeagueInvite(leagueArrayIndex: Int) {
         let league = leagues[1][leagueArrayIndex]
@@ -63,6 +75,7 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         UserService.instance.addLeagueToUser(userId: userId!, leagueId: league.uid)
         
         leagues[0].append(league)
+        leagues[0].sort(by: { $0.name < $1.name })
         
         removeLeagueInvite(leagueArrayIndex: leagueArrayIndex)
     }
@@ -97,6 +110,7 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         
         if indexPath.section == 0, let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell", for: indexPath) as? LeagueCell {
             cell.configureCell(league: leagues[0][indexPath.row])
+            cell.delegate = self
             return cell
         }
         
@@ -121,44 +135,55 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
-        let decline = SwipeAction(style: .default, title: "Decline") { (action, indexPath) in
+        if indexPath.section == 0 {
+            let decline = SwipeAction(style: .default, title: "Leave", handler: { (action, indexPath) in
+                
+                self.showAlertYesOrNo(title: "Leave League", message: "Are you sure you want to leave the league \(self.leagues[0][indexPath.row].name)?", handler: { (action) in
+                    
+                    if action.style == .default {
+                        self.leaveLeague(leagueArrayIndex: indexPath.row)
+                    }
+                })
+            })
             
-            self.showAlertYesOrNo(title: "Decline Invite", message: "Are you sure you want to decline the invite to \(self.leagues[1][indexPath.row].name)?", handler: { (action) in
+            decline.hidesWhenSelected = true
+            decline.font = UIFont(name: "Avenir", size: 13.0)
+            decline.backgroundColor = UIColor.red
+            decline.image = UIImage(named: "cancel")
+            
+            return [decline]
+        } else {
+            let decline = SwipeAction(style: .default, title: "Decline") { (action, indexPath) in
                 
-                switch action.style {
-                case .default:
-                    self.removeLeagueInvite(leagueArrayIndex: indexPath.row)
+                self.showAlertYesOrNo(title: "Decline Invite", message: "Are you sure you want to decline the invite to \(self.leagues[1][indexPath.row].name)?", handler: { (action) in
                     
-                default:
-                    break
-                }
-            })
-        }
-        
-        decline.hidesWhenSelected = true
-        decline.font = UIFont(name: "Avenir", size: 13.0)
-        decline.backgroundColor = UIColor.red
-        decline.image = UIImage(named: "cancel")
-        
-        let accept = SwipeAction(style: .default, title: "Accept") { (action, indexPath) in
-            self.showAlertYesOrNo(title: "Accept Invite", message: "Are you sure you want to accept the invite to \(self.leagues[1][indexPath.row].name)?", handler: { (action) in
-                
-                switch action.style {
-                case .default:
-                    self.acceptLeagueInvite(leagueArrayIndex: indexPath.row)
+                    if action.style == .default {
+                        self.removeLeagueInvite(leagueArrayIndex: indexPath.row)
+                    }
+                })
+            }
+            
+            decline.hidesWhenSelected = true
+            decline.font = UIFont(name: "Avenir", size: 13.0)
+            decline.backgroundColor = UIColor.red
+            decline.image = UIImage(named: "cancel")
+            
+            let accept = SwipeAction(style: .default, title: "Accept") { (action, indexPath) in
+                self.showAlertYesOrNo(title: "Accept Invite", message: "Are you sure you want to accept the invite to \(self.leagues[1][indexPath.row].name)?", handler: { (action) in
                     
-                default:
-                    break
-                }
-            })
+                    if action.style == .default {
+                        self.acceptLeagueInvite(leagueArrayIndex: indexPath.row)
+                    }
+                })
+            }
+            
+            accept.hidesWhenSelected = true
+            accept.font = UIFont(name: "Avenir", size: 13.0)
+            accept.backgroundColor = UIColor(red: 0.02, green: 0.42, blue: 0.02, alpha: 1.0)
+            accept.image = UIImage(named: "checkmark")
+            
+            return [accept, decline]
         }
-        
-        accept.hidesWhenSelected = true
-        accept.font = UIFont(name: "Avenir", size: 13.0)
-        accept.backgroundColor = UIColor(red: 0.02, green: 0.42, blue: 0.02, alpha: 1.0)
-        accept.image = UIImage(named: "checkmark")
-        
-        return [accept, decline]
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {

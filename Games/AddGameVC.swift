@@ -31,7 +31,7 @@ class AddGameVC: UIViewController, UISearchBarDelegate, UICollectionViewDelegate
         
         getAllGamesNotAlreadyInLeague()
     }
-
+    
     func getAllGamesNotAlreadyInLeague() {
         ActivitySpinnerView.instance.showProgressView(view)
         GameService.instance.getAllGames { (games) in

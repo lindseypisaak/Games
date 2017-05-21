@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class LeagueCell: UITableViewCell {
+class LeagueCell: SwipeTableViewCell {
     
     @IBOutlet weak var leagueName: UILabel!
     

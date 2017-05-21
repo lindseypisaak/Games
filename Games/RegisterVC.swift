@@ -27,9 +27,40 @@ class RegisterVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func loginPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(FIRAuth.auth()?.currentUser?.email ?? "No user")
+        
+        guard FIRAuth.auth()?.currentUser == nil else {
+            segueToLeagues()
+            return
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        password.text = ""
+        verifyPassword.text = ""
+    }
+    
+    func segueToLeagues() {
+        let leagues = LeaguesNC.instantiate(fromAppStoryboard: .Leagues)
+        present(leagues, animated: true, completion: nil)
+    }
+    
+    @IBAction func emailPrimaryActionTriggered(_ sender: Any) {
+        name.becomeFirstResponder()
+    }
+    
+    @IBAction func namePrimaryActionTriggered(_ sender: Any) {
+        password.becomeFirstResponder()
+    }
+    
+    @IBAction func passwordPrimaryActionTriggered(_ sender: Any) {
+        verifyPassword.becomeFirstResponder()
+    }
+    
+    @IBAction func verifyPasswordPrimaryActionTriggered(_ sender: Any) {
+        registerPressed(sender)
     }
     
     @IBAction func registerPressed(_ sender: Any) {
@@ -38,16 +69,18 @@ class RegisterVC: UIViewController {
             
             if password == verifiedPass {
                 
-                AuthService.instance.register(email: email, password: password, onComplete: { (errorMessage, data) in
+                ActivitySpinnerView.instance.showProgressView(view)
+                
+                AuthService.instance.register(email: email, password: password, name: name, onComplete: { (errorMessage, data) in
+                    
+                    ActivitySpinnerView.instance.hideProgressView()
                     
                     guard errorMessage == nil else {
                         self.showAlert(title: "Registration Error", message: errorMessage!, handler: nil)
                         return
                     }
                     
-                    self.showAlert(title: "Registration Successful", message: "Your account has been created. Please verify via the email we've sent, then login", handler: { (alertAction) in
-                        self.dismiss(animated: true, completion: nil)
-                    })
+                    self.segueToLeagues()
                 })
                 
             } else {

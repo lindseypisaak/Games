@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class PasswordResetVC: UIViewController {
 
@@ -23,7 +24,34 @@ class PasswordResetVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func emailPrimaryActionTriggered(_ sender: Any) {
+        submitPressed(sender)
+    }
+    
     @IBAction func submitPressed(_ sender: Any) {
+        
+        if let email = email.text, email.characters.count > 0 {
+            
+            ActivitySpinnerView.instance.showProgressView(view)
+            
+            AuthService.instance.requestPasswordReset(email: email, onComplete: { (errorMessage, data) in
+                
+                ActivitySpinnerView.instance.hideProgressView()
+                
+                guard errorMessage == nil else {
+                    self.showAlert(title: "Password Reset Failed", message: errorMessage!, handler: nil)
+                    return
+                }
+                
+                self.showAlert(title: "Email Sent", message: "A password reset email has been sent to \(email)", handler: { (alertAction) in
+                    self.dismiss(animated: true, completion: nil)
+                })
+            })
+        } else {
+            showAlert(title: "Email Required", message: "You must enter an email address", handler: nil)
+        }
+        
+        
     }
 
     @IBAction func backPressed(_ sender: Any) {

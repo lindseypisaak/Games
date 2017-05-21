@@ -17,4 +17,10 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func showAlertYesOrNo(title: String, message: String, handler: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: handler))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: handler))
+        present(alert, animated: true, completion: nil)
+    }
 }

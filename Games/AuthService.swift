@@ -8,8 +8,7 @@
 
 import Foundation
 import FirebaseAuth
-
-typealias Completion = (_ errorMessage: String?, _ data: AnyObject?) -> Void
+import FirebaseDatabase
 
 class AuthService {
     private static let _instance = AuthService()
@@ -18,34 +17,62 @@ class AuthService {
         return _instance
     }
     
-    func register(email: String, password: String, onComplete: Completion?) {
-        
+    func register(email: String, password: String, name: String, onComplete: Completion?) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
-            
             if error != nil {
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
             } else {
+                
+                // Save user to database
+                UserService.instance.saveUser(user: User(uid: user!.uid, email: email, name: name))
                 onComplete?(nil, user)
             }
         })
-        
     }
     
     func login(email: String, password: String, onComplete: Completion?) {
-        
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-            
             if error != nil {
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
             } else {
-                onComplete?(nil, user)
+                
+                // Only login if the user is verified
+//                if FIRAuth.auth()?.currentUser?.isEmailVerified == true {
+                    onComplete?(nil, user)
+//                } else {
+//                    self.sendUserVerificationEmail(onComplete: onComplete)
+//                }
             }
         })
-        
     }
     
-    func requestPasswordReset() {
-        
+    func requestPasswordReset(email: String, onComplete: Completion?) {
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
+            if error != nil {
+                self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
+            } else {
+                onComplete?(nil, nil)
+            }
+        })
+    }
+    
+//    func sendUserVerificationEmail(onComplete: Completion?) {
+//        FIRAuth.auth()?.currentUser?.sendEmailVerification(completion: { (error) in
+//            if error != nil {
+//                self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
+//            } else {
+//                onComplete?(nil, nil)
+//            }
+//        })
+//    }
+    
+    func signOut(onComplete: Completion?) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            onComplete?(nil, nil)
+        } catch let signOutError as NSError {
+            handleFirebaseError(error: signOutError, onComplete: onComplete)
+        }
     }
     
     private func handleFirebaseError(error: NSError, onComplete: Completion?) {
@@ -80,6 +107,9 @@ class AuthService {
             case .errorCodeUserNotFound:
                 onComplete?("User account not found", nil)
                 break
+                
+            case .errorCodeKeychainError:
+                onComplete?("Keychain error", nil)
                 
             default:
                 onComplete?("Authentication error. Please try again", nil)

@@ -13,13 +13,11 @@ class LoginVC: UIViewController {
 
     @IBOutlet weak var email: LoginTextField!
     @IBOutlet weak var password: LoginTextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.hideKeyboardWhenTappedElsewhere()
-        activityIndicator.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,24 +25,44 @@ class LoginVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        password.text = ""
+    }
+    
+    @IBAction func emailPrimaryActionTriggered(_ sender: Any) {
+        password.becomeFirstResponder()
+    }
+    
+    @IBAction func passwordPrimaryActionTriggered(_ sender: Any) {
+        loginPressed(sender)
+    }
+    
+    @IBAction func signUpPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func loginPressed(_ sender: Any) {
         
         if let email = email.text, let password = password.text, (password.characters.count > 0 && password.characters.count > 0) {
             
-            activityIndicator.isHidden = false
-            activityIndicator.startAnimating()
+            ActivitySpinnerView.instance.showProgressView(view)
             
             AuthService.instance.login(email: email, password: password, onComplete: { (errorMessage, data) in
                 
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.isHidden = true
+                ActivitySpinnerView.instance.hideProgressView()
                 
                 guard errorMessage == nil else {
                     self.showAlert(title: "Login Error", message: errorMessage!, handler: nil)
                     return
                 }
                 
-                self.dismiss(animated: true, completion: nil)
+//                guard data != nil else {
+//                    self.showAlert(title: "Verification Required", message: "You must verify your account before logging in. Please check your email and follow the verification link", handler: nil)
+//                    return
+//                }
+                
+                let leagues = LeaguesNC.instantiate(fromAppStoryboard: .Leagues)
+                self.present(leagues, animated: true, completion: nil)
             })
             
         } else {

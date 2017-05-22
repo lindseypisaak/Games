@@ -38,7 +38,7 @@ class GameService {
         })
     }
     
-    func getAllGames(onComplete: @escaping (Array<Game>) -> ()) {
+    func getAllGames(onComplete: @escaping ([Game]) -> ()) {
         gamesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let games = snapshot.value as? Dictionary<String, String> {

@@ -37,6 +37,7 @@ class GamesVC: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, 
         LeagueService.instance.getGamesIdsForLeague(leagueId: league.uid) { (gamesIds) in
             if gamesIds.count == 0 {
                 ActivitySpinnerView.instance.hideProgressView()
+                return
             }
             
             for gameId in gamesIds {
@@ -77,6 +78,8 @@ class GamesVC: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, 
         }
     }
     
+    // MARK: - Table View
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -115,6 +118,8 @@ class GamesVC: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 150)
     }
+    
+    // MARK: - IBActions
     
     @IBAction func leaguesPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

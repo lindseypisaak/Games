@@ -34,6 +34,11 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         ActivitySpinnerView.instance.showProgressView(view)
         
         UserService.instance.getLeagueIdsForUser(userId: userId!) { (leagueIds) in
+            if leagueIds.count == 0 {
+                ActivitySpinnerView.instance.hideProgressView()
+                return
+            }
+            
             for (index, leagueType) in leagueIds.enumerated() {
                 for leagueId in leagueType {
                     
@@ -90,6 +95,8 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         self.tableView.reloadData()
     }
     
+    // MARK: - Table View
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return leagues.count
     }
@@ -109,13 +116,13 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0, let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell", for: indexPath) as? LeagueCell {
-            cell.configureCell(league: leagues[0][indexPath.row])
+            cell.configureCell(league: leagues[indexPath.section][indexPath.row])
             cell.delegate = self
             return cell
         }
         
         if indexPath.section == 1, let cell = tableView.dequeueReusableCell(withIdentifier: "PendingInviteCell", for: indexPath) as? PendingInviteCell {
-            cell.configureCell(league: leagues[1][indexPath.row])
+            cell.configureCell(league: leagues[indexPath.section][indexPath.row])
             cell.delegate = self
             return cell
         }
@@ -126,10 +133,17 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 0, let cell = tableView.cellForRow(at: indexPath) as? LeagueCell {
-            let games = GamesNC.instantiate(fromAppStoryboard: .Games)
-            let gamesVC = games.topViewController as? GamesVC
+            let currentLeague = LeagueTBC.instantiate(fromAppStoryboard: .CurrentLeague)
+            
+            let gamesNC = currentLeague.viewControllers?.first as? GamesNC
+            let gamesVC = gamesNC?.topViewController as? GamesVC
             gamesVC?.league = cell.league
-            present(games, animated: true, completion: nil)
+            
+            let membersNC = currentLeague.viewControllers?.last as? MembersNC
+            let membersVC = membersNC?.topViewController as? MembersVC
+            membersVC?.league = cell.league
+            
+            present(currentLeague, animated: true, completion: nil)
         }
     }
     
@@ -138,7 +152,7 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         if indexPath.section == 0 {
             let decline = SwipeAction(style: .default, title: "Leave", handler: { (action, indexPath) in
                 
-                self.showAlertYesOrNo(title: "Leave League", message: "Are you sure you want to leave the league \(self.leagues[0][indexPath.row].name)?", handler: { (action) in
+                self.showAlertYesOrNo(title: "Leave League", message: "Are you sure you want to leave the league \(self.leagues[indexPath.section][indexPath.row].name)?", handler: { (action) in
                     
                     if action.style == .default {
                         self.leaveLeague(leagueArrayIndex: indexPath.row)
@@ -155,7 +169,7 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         } else {
             let decline = SwipeAction(style: .default, title: "Decline") { (action, indexPath) in
                 
-                self.showAlertYesOrNo(title: "Decline Invite", message: "Are you sure you want to decline the invite to \(self.leagues[1][indexPath.row].name)?", handler: { (action) in
+                self.showAlertYesOrNo(title: "Decline Invite", message: "Are you sure you want to decline the invite to \(self.leagues[indexPath.section][indexPath.row].name)?", handler: { (action) in
                     
                     if action.style == .default {
                         self.removeLeagueInvite(leagueArrayIndex: indexPath.row)
@@ -169,7 +183,7 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
             decline.image = UIImage(named: "cancel")
             
             let accept = SwipeAction(style: .default, title: "Accept") { (action, indexPath) in
-                self.showAlertYesOrNo(title: "Accept Invite", message: "Are you sure you want to accept the invite to \(self.leagues[1][indexPath.row].name)?", handler: { (action) in
+                self.showAlertYesOrNo(title: "Accept Invite", message: "Are you sure you want to accept the invite to \(self.leagues[indexPath.section][indexPath.row].name)?", handler: { (action) in
                     
                     if action.style == .default {
                         self.acceptLeagueInvite(leagueArrayIndex: indexPath.row)
@@ -192,6 +206,8 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         options.transitionStyle = .border
         return options
     }
+
+    // MARK: - IBActions
     
     @IBAction func logOut(_ sender: Any) {
         AuthService.instance.signOut { (error, user) in

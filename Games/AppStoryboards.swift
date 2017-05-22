@@ -11,7 +11,7 @@ import UIKit
 
 enum AppStoryboard : String {
     
-    case Main, Leagues, Games
+    case Main, Leagues, Games, CurrentLeague
     
     var instance : UIStoryboard {
         

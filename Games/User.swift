@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct User {
+struct User: Equatable {
     private var _uid: String
     private var _email: String
     private var _name: String
@@ -29,5 +29,9 @@ struct User {
         _uid = uid
         _email = email
         _name = name
+    }
+    
+    static func ==(lhs: User, rhs: User) -> Bool {
+        return lhs.uid == rhs.uid && lhs.email == rhs.email && lhs.name == rhs.name
     }
 }

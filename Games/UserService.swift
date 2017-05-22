@@ -29,6 +29,21 @@ class UserService {
         usersRef.child(user.uid).setValue(profile)
     }
     
+    func getUser(userId: String, onComplete: @escaping (User?) -> ()) {
+        usersRef.child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let user = snapshot.value as? Dictionary<String, Any> {
+                if let userName = user["name"] as? String {
+                    if let email = user["email"] as? String {
+                        onComplete(User(uid: userId, email: email, name: userName))
+                        return
+                    }
+                }
+            }
+            
+            onComplete(nil)
+        })
+    }
+    
     func addLeagueToUser(userId: String, leagueId: String) {
         usersRef.child(userId).child(DB_LEAGUES).updateChildValues([leagueId: true])
     }
@@ -61,9 +76,10 @@ class UserService {
                 }
                 
                 onComplete(leaguesToReturn)
+                return
             }
             
-            onComplete(Array<Array<String>>())
+            onComplete([[String]()])
         })
     }
 }

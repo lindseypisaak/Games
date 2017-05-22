@@ -76,17 +76,39 @@ class LeagueService {
         })
     }
     
-    
-    func getGamesIdsForLeague(leagueId: String, onComplete: @escaping (Array<String>) -> ()) {
+    func getGamesIdsForLeague(leagueId: String, onComplete: @escaping ([String]) -> ()) {
         leaguesRef.child(leagueId).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let league = snapshot.value as? Dictionary<String, Any> {
                 if let games = league["games"] as? Dictionary<String, Any> {
                     onComplete(games.keys.sorted())
+                    return
                 }
             }
             
-            onComplete(Array<String>())
+            onComplete([String]())
+        })
+    }
+    
+    func getMembersAndInvitesForLeague(leagueId: String, onComplete: @escaping ([[String]]) -> ()) {
+        leaguesRef.child(leagueId).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let league = snapshot.value as? Dictionary<String, Any> {
+                var membersToReturn = [[String]()]
+                
+                if let members = league["members"] as? Dictionary<String, Any> {
+                    membersToReturn.append(members.keys.sorted())
+                }
+                
+                if let invites = league["invites"] as? Dictionary<String, Any> {
+                    membersToReturn.append(invites.keys.sorted())
+                }
+                
+                onComplete(membersToReturn)
+                return
+            }
+            
+            onComplete([[String]()])
         })
     }
 }

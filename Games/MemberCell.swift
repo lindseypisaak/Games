@@ -10,6 +10,7 @@ import UIKit
 
 class MemberCell: UITableViewCell {
     
+    @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var name: UILabel!
     
     var user: User!
@@ -18,5 +19,7 @@ class MemberCell: UITableViewCell {
         self.user = user
         
         name.text = self.user.name
+//        img.image = self.user.image
+        img.image = #imageLiteral(resourceName: "cancel")
     }
 }

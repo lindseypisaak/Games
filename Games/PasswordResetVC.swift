@@ -13,6 +13,10 @@ class PasswordResetVC: UIViewController {
 
     @IBOutlet weak var email: LoginTextField!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

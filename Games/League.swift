@@ -11,6 +11,7 @@ import UIKit
 struct League: Equatable {
     private var _uid: String
     private var _name: String
+    private var _invitedBy: String?
     
     var uid: String {
         return _uid
@@ -18,6 +19,10 @@ struct League: Equatable {
     
     var name: String {
         return _name
+    }
+    
+    var invitedBy: String? {
+        return _invitedBy
     }
     
     init(uid: String, name: String) {

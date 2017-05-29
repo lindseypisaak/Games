@@ -12,6 +12,7 @@ struct User: Equatable {
     private var _uid: String
     private var _email: String
     private var _name: String
+    private var _image: UIImage?
     
     var uid: String {
         return _uid
@@ -23,6 +24,10 @@ struct User: Equatable {
     
     var name: String {
         return _name
+    }
+    
+    var image: UIImage? {
+        return _image
     }
     
     init(uid: String, email: String, name: String) {

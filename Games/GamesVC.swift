@@ -28,6 +28,9 @@ class GamesVC: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, 
         self.navigationItem.title = league.name
         self.hideKeyboardWhenTappedElsewhere()
         
+        searchBar.layer.borderColor = UIColor(red:0.23, green:0.33, blue:0.41, alpha:1.0).cgColor
+        searchBar.layer.borderWidth = 1
+        
         getGamesForLeague()
     }
 

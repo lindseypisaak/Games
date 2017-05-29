@@ -60,26 +60,26 @@ class UserService {
         usersRef.child(userId).child(DB_INVITES).child(leagueId).removeValue()
     }
     
-    func getLeagueIdsForUser(userId: String, onComplete: @escaping (Array<Array<String>>) -> ()) {
+    func getLeagueIdsForUser(userId: String, onComplete: @escaping (Dictionary<String, [String]>) -> ()) {
         
         usersRef.child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let user = snapshot.value as? Dictionary<String, Any> {
-                var leaguesToReturn = [[String]()]
+                var leaguesToReturn = Dictionary<String, [String]>()
                 
                 if let leagues = user["leagues"] as? Dictionary<String, Any> {
-                    leaguesToReturn.append(leagues.keys.sorted())
+                    leaguesToReturn["leagues"] = leagues.keys.sorted()
                 }
                 
                 if let invites = user["invites"] as? Dictionary<String, Any> {
-                    leaguesToReturn.append(invites.keys.sorted())
+                    leaguesToReturn["invites"] = invites.keys.sorted()
                 }
                 
                 onComplete(leaguesToReturn)
                 return
             }
             
-            onComplete([[String]()])
+            onComplete(Dictionary<String, [String]>())
         })
     }
 }

@@ -1,27 +1,21 @@
 //
-//  LeagueMembersNC.swift
+//  InviteMemberModalVC.swift
 //  Games
 //
-//  Created by Lindsey Isaak on 2017-05-21.
+//  Created by Lindsey Isaak on 2017-05-27.
 //  Copyright © 2017 Lindsey Isaak. All rights reserved.
 //
 
 import UIKit
 
-class MembersNC: UINavigationController {
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+class InviteMemberModalVC: UIViewController {
+
+    @IBOutlet weak var email: CustomTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationBar.tintColor = UIColor.white
-        self.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 19)!,
-            NSForegroundColorAttributeName: UIColor.white
-        ]
+
+        email.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +23,13 @@ class MembersNC: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func dismissModal(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func sendInvite(_ sender: Any) {
+        
+    }
 
     /*
     // MARK: - Navigation

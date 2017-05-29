@@ -1,16 +1,16 @@
 //
-//  LoginTextField.swift
+//  CustomTextField.swift
 //  Games
 //
-//  Created by Lindsey Isaak on 2017-04-26.
+//  Created by Lindsey Isaak on 2017-05-27.
 //  Copyright © 2017 Lindsey Isaak. All rights reserved.
 //
 
 import UIKit
 
 @IBDesignable
-class LoginTextField: UITextField {
-
+class CustomTextField: UITextField {
+    
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var leftViewRect = super.leftViewRect(forBounds: bounds)
         leftViewRect.origin.x += leftPaddingForImage
@@ -87,5 +87,4 @@ class LoginTextField: UITextField {
             attributedPlaceholder = str
         }
     }
-    
 }

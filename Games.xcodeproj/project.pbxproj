@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AE1F13108AF8FE5CCB17F10F /* Pods_Games.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDA0FDC8A524112B10D5DA4A /* Pods_Games.framework */; };
 		C70AFB9E1EC6B50700C245E9 /* LeaguesNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70AFB9D1EC6B50700C245E9 /* LeaguesNC.swift */; };
-		C70AFBA11EC94A6400C245E9 /* Games.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C70AFBA01EC94A6400C245E9 /* Games.storyboard */; };
 		C70AFBA51EC94BB600C245E9 /* GamesNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70AFBA41EC94BB600C245E9 /* GamesNC.swift */; };
 		C70AFBA91EC94D6400C245E9 /* GamesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70AFBA81EC94D6400C245E9 /* GamesVC.swift */; };
 		C70AFBAB1EC950AE00C245E9 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70AFBAA1EC950AE00C245E9 /* GameCell.swift */; };
@@ -28,6 +27,11 @@
 		C729C06C1EB835EB00FC2EB0 /* ActivitySpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C729C06B1EB835EB00FC2EB0 /* ActivitySpinnerView.swift */; };
 		C735BAC71ED117D300D20949 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C735BAC61ED117D300D20949 /* GameService.swift */; };
 		C735BAC91ED132CA00D20949 /* AddGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C735BAC81ED132CA00D20949 /* AddGameVC.swift */; };
+		C73931131EDA92B600ED38B6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73931121EDA92B600ED38B6 /* CustomTextField.swift */; };
+		C73931161EDA99E300ED38B6 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73931151EDA99E300ED38B6 /* ModalView.swift */; };
+		C73931191EDA9B1500ED38B6 /* InviteMemberModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73931181EDA9B1500ED38B6 /* InviteMemberModalVC.swift */; };
+		C739311B1EDBBBD200ED38B6 /* ShadowUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739311A1EDBBBD200ED38B6 /* ShadowUIView.swift */; };
+		C739311D1EDBC93D00ED38B6 /* MemberInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739311C1EDBC93D00ED38B6 /* MemberInviteCell.swift */; };
 		C76000011EB185FB002C9AB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C76000001EB185FB002C9AB0 /* GoogleService-Info.plist */; };
 		C76000081EB19772002C9AB0 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76000071EB19772002C9AB0 /* LoginTextField.swift */; };
 		C760000A1EB19B03002C9AB0 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76000091EB19B03002C9AB0 /* LoginButton.swift */; };
@@ -51,7 +55,6 @@
 /* Begin PBXFileReference section */
 		C28AAB04554CD7DB525D9500 /* Pods-Games.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Games.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Games/Pods-Games.debug.xcconfig"; sourceTree = "<group>"; };
 		C70AFB9D1EC6B50700C245E9 /* LeaguesNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaguesNC.swift; sourceTree = "<group>"; };
-		C70AFBA01EC94A6400C245E9 /* Games.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Games.storyboard; sourceTree = "<group>"; };
 		C70AFBA41EC94BB600C245E9 /* GamesNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesNC.swift; sourceTree = "<group>"; };
 		C70AFBA81EC94D6400C245E9 /* GamesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesVC.swift; sourceTree = "<group>"; };
 		C70AFBAA1EC950AE00C245E9 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
@@ -70,6 +73,11 @@
 		C729C06B1EB835EB00FC2EB0 /* ActivitySpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitySpinnerView.swift; sourceTree = "<group>"; };
 		C735BAC61ED117D300D20949 /* GameService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		C735BAC81ED132CA00D20949 /* AddGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameVC.swift; sourceTree = "<group>"; };
+		C73931121EDA92B600ED38B6 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		C73931151EDA99E300ED38B6 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		C73931181EDA9B1500ED38B6 /* InviteMemberModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteMemberModalVC.swift; sourceTree = "<group>"; };
+		C739311A1EDBBBD200ED38B6 /* ShadowUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowUIView.swift; sourceTree = "<group>"; };
+		C739311C1EDBC93D00ED38B6 /* MemberInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberInviteCell.swift; sourceTree = "<group>"; };
 		C76000001EB185FB002C9AB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C76000071EB19772002C9AB0 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		C76000091EB19B03002C9AB0 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -120,7 +128,6 @@
 				C7D387521EB531700058A5F2 /* Leagues.storyboard */,
 				C760FFEF1EB184D6002C9AB0 /* Main.storyboard */,
 				C760FFF71EB184D6002C9AB0 /* LaunchScreen.storyboard */,
-				C70AFBA01EC94A6400C245E9 /* Games.storyboard */,
 				C70B680A1ED246C9008BE774 /* CurrentLeague.storyboard */,
 			);
 			name = Storyboards;
@@ -148,6 +155,27 @@
 			isa = PBXGroup;
 			children = (
 				C723BD131ED3971E00AA9B2D /* MemberCell.swift */,
+				C739311C1EDBC93D00ED38B6 /* MemberInviteCell.swift */,
+			);
+			name = Members;
+			sourceTree = "<group>";
+		};
+		C73931141EDA99D500ED38B6 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				C73931151EDA99E300ED38B6 /* ModalView.swift */,
+				C73931121EDA92B600ED38B6 /* CustomTextField.swift */,
+				C739311A1EDBBBD200ED38B6 /* ShadowUIView.swift */,
+			);
+			name = "UI Elements";
+			sourceTree = "<group>";
+		};
+		C73931171EDA9AF700ED38B6 /* Members */ = {
+			isa = PBXGroup;
+			children = (
+				C70B68081ED22264008BE774 /* MembersNC.swift */,
+				C70B680E1ED24DED008BE774 /* MembersVC.swift */,
+				C73931181EDA9B1500ED38B6 /* InviteMemberModalVC.swift */,
 			);
 			name = Members;
 			sourceTree = "<group>";
@@ -155,6 +183,7 @@
 		C76000021EB18B89002C9AB0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C73931171EDA9AF700ED38B6 /* Members */,
 				C70AFBA21EC94A8200C245E9 /* Games */,
 				C7D387551EB531DE0058A5F2 /* Leagues */,
 				C760000E1EB1A483002C9AB0 /* Login */,
@@ -165,6 +194,7 @@
 		C76000031EB18B91002C9AB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C73931141EDA99D500ED38B6 /* UI Elements */,
 				C723BD121ED3971100AA9B2D /* Members */,
 				C70AFBA31EC94A8900C245E9 /* Games */,
 				C70AFB9F1EC6C51500C245E9 /* Storyboards */,
@@ -266,8 +296,6 @@
 				C723C7DA1EBE56990000C383 /* NewLeagueVC.swift */,
 				C70AFB9D1EC6B50700C245E9 /* LeaguesNC.swift */,
 				C70B68061ED22203008BE774 /* LeagueTBC.swift */,
-				C70B68081ED22264008BE774 /* MembersNC.swift */,
-				C70B680E1ED24DED008BE774 /* MembersVC.swift */,
 			);
 			name = Leagues;
 			sourceTree = "<group>";
@@ -354,7 +382,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C70AFBA11EC94A6400C245E9 /* Games.storyboard in Resources */,
 				C760FFF91EB184D6002C9AB0 /* LaunchScreen.storyboard in Resources */,
 				C76000011EB185FB002C9AB0 /* GoogleService-Info.plist in Resources */,
 				C70B680B1ED246C9008BE774 /* CurrentLeague.storyboard in Resources */,
@@ -419,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C73931161EDA99E300ED38B6 /* ModalView.swift in Sources */,
 				C7FB15971EBAE6C700D79D5C /* League.swift in Sources */,
 				C70AFBA91EC94D6400C245E9 /* GamesVC.swift in Sources */,
 				C760000A1EB19B03002C9AB0 /* LoginButton.swift in Sources */,
@@ -426,6 +454,7 @@
 				C723BD141ED3971E00AA9B2D /* MemberCell.swift in Sources */,
 				C7D3875B1EB6A0830058A5F2 /* HideKeyboardExtension.swift in Sources */,
 				C729C06C1EB835EB00FC2EB0 /* ActivitySpinnerView.swift in Sources */,
+				C739311D1EDBC93D00ED38B6 /* MemberInviteCell.swift in Sources */,
 				C723C7D51EBE38CD0000C383 /* Constants.swift in Sources */,
 				C723C7DF1EC17A990000C383 /* LeagueService.swift in Sources */,
 				C7D387591EB65F8A0058A5F2 /* AppStoryboards.swift in Sources */,
@@ -436,9 +465,11 @@
 				C7D3875D1EB6A1910058A5F2 /* AlertExtension.swift in Sources */,
 				C70B680F1ED24DED008BE774 /* MembersVC.swift in Sources */,
 				C760000C1EB19FCB002C9AB0 /* LoginVC.swift in Sources */,
+				C739311B1EDBBBD200ED38B6 /* ShadowUIView.swift in Sources */,
 				C76000081EB19772002C9AB0 /* LoginTextField.swift in Sources */,
 				C735BAC71ED117D300D20949 /* GameService.swift in Sources */,
 				C723C7D91EBE44810000C383 /* PendingInviteCell.swift in Sources */,
+				C73931131EDA92B600ED38B6 /* CustomTextField.swift in Sources */,
 				C70AFBAD1EC950D800C245E9 /* Game.swift in Sources */,
 				C7FB15951EBADB1900D79D5C /* UserService.swift in Sources */,
 				C76000101EB1A6DC002C9AB0 /* PasswordResetVC.swift in Sources */,
@@ -448,6 +479,7 @@
 				C70AFBA51EC94BB600C245E9 /* GamesNC.swift in Sources */,
 				C735BAC91ED132CA00D20949 /* AddGameVC.swift in Sources */,
 				C7D3874F1EB5261C0058A5F2 /* AuthService.swift in Sources */,
+				C73931191EDA9B1500ED38B6 /* InviteMemberModalVC.swift in Sources */,
 				C723C7DD1EBE62700000C383 /* User.swift in Sources */,
 				C70AFB9E1EC6B50700C245E9 /* LeaguesNC.swift in Sources */,
 			);

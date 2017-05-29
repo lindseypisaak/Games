@@ -14,7 +14,8 @@ import SwipeCellKit
 class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
 
     private var userId: String?
-    private var leagues = [[League](), [League]()]
+//    private var leagues = [[League](), [League]()]
+    private var leagues = Dictionary<String, [League]>()
     private var sectionNames = ["My Leagues", "Pending Invites"]
     
     override func viewDidLoad() {
@@ -24,6 +25,9 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
         tableView.dataSource = self
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(self.refresh(refreshControl:)), for: .valueChanged)
+        
+        leagues["leagues"] = [League]()
+        leagues["invites"] = [League]()
         
         userId = FIRAuth.auth()?.currentUser?.uid
         
@@ -39,17 +43,16 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
                 return
             }
             
-            for (index, leagueType) in leagueIds.enumerated() {
-                for leagueId in leagueType {
+            for leagueType in leagueIds {
+                for leagueId in leagueType.value {
                     
                     LeagueService.instance.getLeague(leagueId: leagueId, onComplete: { (league) in
                         
-                        if let league = league, !self.leagues[index-1].contains(league) {
-                            self.leagues[index-1].append(league)
+                        if let league = league, let leagues = self.leagues[leagueType.key], !leagues.contains(league) {
+                            self.leagues[leagueType.key]?.append(league)
                         }
                         
-                        self.leagues[0].sort(by: { $0.name < $1.name })
-                        self.leagues[1].sort(by: { $0.name < $1.name })
+                        self.leagues[leagueType.key]?.sort(by: { $0.name < $1.name } )
                         self.tableView.reloadData()
                         ActivitySpinnerView.instance.hideProgressView()
                     })
@@ -64,8 +67,8 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
     }
     
     func leaveLeague(leagueArrayIndex: Int) {
-        let league = leagues[0][leagueArrayIndex]
-        leagues[0].remove(at: leagueArrayIndex)
+        let league = (leagues["leagues"]?[leagueArrayIndex])!
+        leagues["leagues"]?.remove(at: leagueArrayIndex)
         
         LeagueService.instance.removeUserFromLeague(leagueId: league.uid, userId: userId!)
         UserService.instance.removeLeagueFromUser(userId: userId!, leagueId: league.uid)
@@ -74,20 +77,20 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
     }
 
     func acceptLeagueInvite(leagueArrayIndex: Int) {
-        let league = leagues[1][leagueArrayIndex]
+        let league = (leagues["invites"]?[leagueArrayIndex])!
         
         LeagueService.instance.addUserToLeague(leagueId: league.uid, userId: userId!)
         UserService.instance.addLeagueToUser(userId: userId!, leagueId: league.uid)
         
-        leagues[0].append(league)
-        leagues[0].sort(by: { $0.name < $1.name })
+        leagues["leagues"]?.append(league)
+        leagues["leagues"]?.sort(by: { $0.name < $1.name } )
         
         removeLeagueInvite(leagueArrayIndex: leagueArrayIndex)
     }
     
     func removeLeagueInvite(leagueArrayIndex: Int) {
-        let league = leagues[1][leagueArrayIndex]
-        leagues[1].remove(at: leagueArrayIndex)
+        let league = (leagues["invites"]?[leagueArrayIndex])!
+        leagues["invites"]?.remove(at: leagueArrayIndex)
         
         LeagueService.instance.removeUserFromLeagueInvites(leagueId: league.uid, userId: userId!)
         UserService.instance.removeLeagueFromUserInvites(userId: userId!, leagueId: league.uid)
@@ -102,27 +105,41 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leagues[section].count
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section < sectionNames.count, leagues[section].count > 0 {
-            return sectionNames[section]
+        if section == 0 {
+            return leagues["leagues"]?.count ?? 0
         }
         
-        return nil
+        return leagues["invites"]?.count ?? 0
     }
+    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0, (leagues["leagues"]?.count)! > 0 {
+//            return sectionNames[section]
+//        } else if section == 1, (leagues["invites"]?.count)! > 0 {
+//            return sectionNames[section]
+//        }
+//        
+//        return nil
+//    }
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.section == 0 {
+//            return 70.0
+//        }
+//        
+//        return 70.0
+//    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0, let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell", for: indexPath) as? LeagueCell {
-            cell.configureCell(league: leagues[indexPath.section][indexPath.row])
+            cell.configureCell(league: (leagues["leagues"]?[indexPath.row])!)
             cell.delegate = self
             return cell
         }
         
         if indexPath.section == 1, let cell = tableView.dequeueReusableCell(withIdentifier: "PendingInviteCell", for: indexPath) as? PendingInviteCell {
-            cell.configureCell(league: leagues[indexPath.section][indexPath.row])
+            cell.configureCell(league: (leagues["invites"]?[indexPath.row])!)
             cell.delegate = self
             return cell
         }
@@ -149,10 +166,10 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
-        if indexPath.section == 0 {
-            let decline = SwipeAction(style: .default, title: "Leave", handler: { (action, indexPath) in
+        if indexPath.section == 0, let league = self.leagues["leagues"]?[indexPath.row] {
+            let leave = SwipeAction(style: .default, title: "Leave", handler: { (action, indexPath) in
                 
-                self.showAlertYesOrNo(title: "Leave League", message: "Are you sure you want to leave the league \(self.leagues[indexPath.section][indexPath.row].name)?", handler: { (action) in
+                self.showAlertYesOrNo(title: "Leave League", message: "Are you sure you want to leave the league \(league.name)?", handler: { (action) in
                     
                     if action.style == .default {
                         self.leaveLeague(leagueArrayIndex: indexPath.row)
@@ -160,16 +177,16 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
                 })
             })
             
-            decline.hidesWhenSelected = true
-            decline.font = UIFont(name: "Avenir", size: 13.0)
-            decline.backgroundColor = UIColor.red
-            decline.image = UIImage(named: "cancel")
+            leave.hidesWhenSelected = true
+            leave.font = UIFont(name: "Avenir", size: 13.0)
+            leave.backgroundColor = UIColor.red
+            leave.image = UIImage(named: "cancel")
             
-            return [decline]
-        } else {
+            return [leave]
+        } else if let league = self.leagues["invites"]?[indexPath.row] {
             let decline = SwipeAction(style: .default, title: "Decline") { (action, indexPath) in
                 
-                self.showAlertYesOrNo(title: "Decline Invite", message: "Are you sure you want to decline the invite to \(self.leagues[indexPath.section][indexPath.row].name)?", handler: { (action) in
+                self.showAlertYesOrNo(title: "Decline Invite", message: "Are you sure you want to decline the invite to \(league.name)?", handler: { (action) in
                     
                     if action.style == .default {
                         self.removeLeagueInvite(leagueArrayIndex: indexPath.row)
@@ -183,7 +200,7 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
             decline.image = UIImage(named: "cancel")
             
             let accept = SwipeAction(style: .default, title: "Accept") { (action, indexPath) in
-                self.showAlertYesOrNo(title: "Accept Invite", message: "Are you sure you want to accept the invite to \(self.leagues[indexPath.section][indexPath.row].name)?", handler: { (action) in
+                self.showAlertYesOrNo(title: "Accept Invite", message: "Are you sure you want to accept the invite to \(league.name)?", handler: { (action) in
                     
                     if action.style == .default {
                         self.acceptLeagueInvite(leagueArrayIndex: indexPath.row)
@@ -198,6 +215,8 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
             
             return [accept, decline]
         }
+        
+        return nil
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {

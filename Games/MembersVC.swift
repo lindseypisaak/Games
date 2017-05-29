@@ -74,17 +74,22 @@ class MembersVC: UITableViewController {
         return members[section].count
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section < sectionNames.count, members[section].count > 0 {
-            return sectionNames[section]
-        }
-        
-        return nil
-    }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section < sectionNames.count, members[1].count > 0 {
+//            return sectionNames[section]
+//        }
+//        
+//        return nil
+//    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as? MemberCell {
+        if indexPath.section == 0, let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as? MemberCell {
+            cell.configureCell(user: self.members[indexPath.section][indexPath.row])
+            return cell
+        }
+        
+        if indexPath.section == 1, let cell = tableView.dequeueReusableCell(withIdentifier: "MemberInviteCell", for: indexPath) as? MemberInviteCell {
             cell.configureCell(user: self.members[indexPath.section][indexPath.row])
             return cell
         }

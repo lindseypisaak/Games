@@ -14,6 +14,10 @@ class LoginVC: UIViewController {
     @IBOutlet weak var email: LoginTextField!
     @IBOutlet weak var password: LoginTextField!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

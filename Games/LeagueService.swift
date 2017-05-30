@@ -62,12 +62,12 @@ class LeagueService {
         leaguesRef.child(leagueId).child(DB_INVITES).child(userId).removeValue()
     }
     
-    func getLeague(leagueId: String, onComplete: @escaping (League?) -> ()) {
+    func getLeague(leagueId: String, invitedBy: String, onComplete: @escaping (League?) -> ()) {
         leaguesRef.child(leagueId).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let league = snapshot.value as? Dictionary<String, Any> {
                 if let leagueName = league["name"] as? String {
-                    onComplete(League(uid: leagueId, name: leagueName))
+                    onComplete(League(uid: leagueId, name: leagueName, invitedBy: invitedBy))
                     return
                 }
             }

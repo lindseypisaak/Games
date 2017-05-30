@@ -20,7 +20,7 @@
 		C723BD141ED3971E00AA9B2D /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723BD131ED3971E00AA9B2D /* MemberCell.swift */; };
 		C723C7D51EBE38CD0000C383 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723C7D41EBE38CD0000C383 /* Constants.swift */; };
 		C723C7D71EBE44720000C383 /* LeagueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723C7D61EBE44720000C383 /* LeagueCell.swift */; };
-		C723C7D91EBE44810000C383 /* PendingInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723C7D81EBE44810000C383 /* PendingInviteCell.swift */; };
+		C723C7D91EBE44810000C383 /* LeagueInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723C7D81EBE44810000C383 /* LeagueInviteCell.swift */; };
 		C723C7DB1EBE56990000C383 /* NewLeagueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723C7DA1EBE56990000C383 /* NewLeagueVC.swift */; };
 		C723C7DD1EBE62700000C383 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723C7DC1EBE62700000C383 /* User.swift */; };
 		C723C7DF1EC17A990000C383 /* LeagueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723C7DE1EC17A990000C383 /* LeagueService.swift */; };
@@ -66,7 +66,7 @@
 		C723BD131ED3971E00AA9B2D /* MemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		C723C7D41EBE38CD0000C383 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C723C7D61EBE44720000C383 /* LeagueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueCell.swift; sourceTree = "<group>"; };
-		C723C7D81EBE44810000C383 /* PendingInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInviteCell.swift; sourceTree = "<group>"; };
+		C723C7D81EBE44810000C383 /* LeagueInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueInviteCell.swift; sourceTree = "<group>"; };
 		C723C7DA1EBE56990000C383 /* NewLeagueVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLeagueVC.swift; sourceTree = "<group>"; };
 		C723C7DC1EBE62700000C383 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C723C7DE1EC17A990000C383 /* LeagueService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueService.swift; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				C723C7D61EBE44720000C383 /* LeagueCell.swift */,
-				C723C7D81EBE44810000C383 /* PendingInviteCell.swift */,
+				C723C7D81EBE44810000C383 /* LeagueInviteCell.swift */,
 			);
 			name = Leagues;
 			sourceTree = "<group>";
@@ -468,7 +468,7 @@
 				C739311B1EDBBBD200ED38B6 /* ShadowUIView.swift in Sources */,
 				C76000081EB19772002C9AB0 /* LoginTextField.swift in Sources */,
 				C735BAC71ED117D300D20949 /* GameService.swift in Sources */,
-				C723C7D91EBE44810000C383 /* PendingInviteCell.swift in Sources */,
+				C723C7D91EBE44810000C383 /* LeagueInviteCell.swift in Sources */,
 				C73931131EDA92B600ED38B6 /* CustomTextField.swift in Sources */,
 				C70AFBAD1EC950D800C245E9 /* Game.swift in Sources */,
 				C7FB15951EBADB1900D79D5C /* UserService.swift in Sources */,

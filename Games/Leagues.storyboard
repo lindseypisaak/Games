@@ -70,7 +70,7 @@
                                     <outlet property="leagueName" destination="8A3-8L-NRv" id="pav-b8-wRI"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PendingInviteCell" id="7pc-CF-dOr" customClass="PendingInviteCell" customModule="Games" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LeagueInviteCell" id="7pc-CF-dOr" customClass="LeagueInviteCell" customModule="Games" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="103" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7pc-CF-dOr" id="Gpw-tk-KAb">

@@ -166,7 +166,6 @@
         <!--Invite Member ModalVC-->
         <scene sceneID="nPx-T3-26u">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8gB-9T-Bby" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="uZS-4K-M6z" customClass="InviteMemberModalVC" customModule="Games" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="pJH-XZ-yVo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -274,6 +273,7 @@
                         <outlet property="email" destination="nPV-LV-DGZ" id="65t-E6-knY"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8gB-9T-Bby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2944.8000000000002" y="665.21739130434787"/>
         </scene>

@@ -9,7 +9,7 @@
 import UIKit
 import SwipeCellKit
 
-class PendingInviteCell: SwipeTableViewCell {
+class LeagueInviteCell: SwipeTableViewCell {
     
     @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var invitedByEmail: UILabel!
@@ -20,5 +20,6 @@ class PendingInviteCell: SwipeTableViewCell {
         self.league = league
         
         leagueName.text = league.name
+        invitedByEmail.text = league.invitedBy
     }
 }

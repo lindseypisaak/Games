@@ -25,9 +25,10 @@ struct League: Equatable {
         return _invitedBy
     }
     
-    init(uid: String, name: String) {
+    init(uid: String, name: String, invitedBy: String?) {
         _uid = uid
         _name = name
+        _invitedBy = invitedBy
     }
     
     static func ==(lhs: League, rhs: League) -> Bool {

@@ -46,7 +46,7 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
             for leagueType in leagueIds {
                 for leagueId in leagueType.value {
                     
-                    LeagueService.instance.getLeague(leagueId: leagueId, onComplete: { (league) in
+                    LeagueService.instance.getLeague(leagueId: leagueId.key, invitedBy: leagueId.value, onComplete: { (league) in
                         
                         if let league = league, let leagues = self.leagues[leagueType.key], !leagues.contains(league) {
                             self.leagues[leagueType.key]?.append(league)
@@ -138,7 +138,7 @@ class LeaguesVC: UITableViewController, SwipeTableViewCellDelegate {
             return cell
         }
         
-        if indexPath.section == 1, let cell = tableView.dequeueReusableCell(withIdentifier: "PendingInviteCell", for: indexPath) as? PendingInviteCell {
+        if indexPath.section == 1, let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueInviteCell", for: indexPath) as? LeagueInviteCell {
             cell.configureCell(league: (leagues["invites"]?[indexPath.row])!)
             cell.delegate = self
             return cell

@@ -150,7 +150,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EGL-CL-dg4">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="uZS-4K-M6z" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="54c-uk-7Ih"/>
+                                <segue destination="uZS-4K-M6z" kind="presentation" identifier="inviteFriendModal" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="54c-uk-7Ih"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -185,7 +185,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYe-RO-79d">
                                             <rect key="frame" x="0.0" y="160" width="250" height="40"/>
-                                            <color key="backgroundColor" red="0.1058823529" green="0.22352941179999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.038033325309999998" green="0.65566909640000004" blue="0.63110835669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="K6l-pb-h6h"/>
                                             </constraints>
@@ -204,7 +204,7 @@
                                                 <constraint firstAttribute="width" constant="200" id="qaJ-eT-SAy"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
-                                            <color key="textColor" red="0.1058823529" green="0.22352941179999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nPV-LV-DGZ" customClass="CustomTextField" customModule="Games" customModuleProvider="target">
@@ -213,9 +213,9 @@
                                                 <constraint firstAttribute="height" constant="40" id="5H8-fZ-64T"/>
                                                 <constraint firstAttribute="width" constant="220" id="BGQ-gE-Tr0"/>
                                             </constraints>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="leftPaddingForImage">
                                                     <real key="value" value="10"/>
@@ -227,19 +227,22 @@
                                                     <real key="value" value="2"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                    <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="value" white="0.66666666669999997" alpha="0.49507705480000003" colorSpace="calibratedWhite"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="leftPaddingForText">
                                                     <real key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="cancel"/>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                    <color key="value" red="0.1058823529" green="0.22352941179999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="emailPrimaryActionTriggered:" destination="uZS-4K-M6z" eventType="primaryActionTriggered" id="TXn-Sc-WFu"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.83921568629999999" green="0.86274509799999999" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.1058823529" green="0.22352941179999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="nPV-LV-DGZ" firstAttribute="top" secondItem="Ews-7M-Tot" secondAttribute="bottom" constant="15" id="3GI-q5-YpZ"/>
                                         <constraint firstItem="Ews-7M-Tot" firstAttribute="top" secondItem="Oz4-SW-dBs" secondAttribute="top" constant="15" id="EpV-er-IyJ"/>
@@ -343,7 +346,7 @@
                                 <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <color key="backgroundColor" red="0.83921568629999999" green="0.86274509799999999" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ln0-3X-Ts8">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ln0-3X-Ts8">
                                 <rect key="frame" x="20" y="128" width="335" height="470"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="7Rz-hw-xJu">

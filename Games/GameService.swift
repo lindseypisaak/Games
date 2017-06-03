@@ -24,8 +24,6 @@ class GameService {
         return mainRef.child(DB_GAMES)
     }
     
-    
-    
     func getGame(gameId: String, onComplete: @escaping (Game?) -> ()) {
         gamesRef.child(gameId).observeSingleEvent(of: .value, with: { (snapshot) in
             

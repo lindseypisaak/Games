@@ -32,34 +32,39 @@ class LeagueService {
         return mainRef.child(DB_LEAGUEINVITES)
     }
     
+    var leagueGamesRef: FIRDatabaseReference {
+        return mainRef.child(DB_LEAGUEGAMES)
+    }
+    
     func createLeague(name: String, createdByUid: String, onComplete: Completion?) {
         let leagueRef = leaguesRef.childByAutoId()
         
         let newLeague = [
             "name": name as AnyObject,
-            DB_MEMBERS: [
-                createdByUid: true
-            ]
+            "admin": createdByUid as AnyObject
         ] as [String : Any]
         
         leagueRef.setValue(newLeague)
+        
+        addUserToLeague(leagueId: leagueRef.key, userId: createdByUid)
+        
         onComplete?(nil, leagueRef.key as AnyObject)
     }
     
     func addUserToLeague(leagueId: String, userId: String) {
-        leaguesRef.child(leagueId).child(DB_MEMBERS).setValue([userId: true])
+        leagueMembersRef.child(leagueId).updateChildValues([userId : true])
     }
     
     func removeUserFromLeague(leagueId: String, userId: String) {
-        leaguesRef.child(leagueId).child(DB_MEMBERS).child(userId).removeValue()
+        leagueMembersRef.child(leagueId).child(userId).removeValue()
     }
     
-//    func inviteUserToLeague(leagueId: String, userEmail: String) {
-//        leaguesRef.child(leagueId).child(DB_INVITES).updateChildValues([userEmail: true])
-//    }
+    func inviteUserToLeague(leagueId: String, userId: String, invitedBy: String) {
+        leagueInvitesRef.child(leagueId).updateChildValues([userId : invitedBy])
+    }
     
     func removeUserFromLeagueInvites(leagueId: String, userId: String) {
-        leaguesRef.child(leagueId).child(DB_INVITES).child(userId).removeValue()
+        leagueInvitesRef.child(leagueId).child(userId).removeValue()
     }
     
     func getLeague(leagueId: String, invitedBy: String, onComplete: @escaping (League?) -> ()) {
@@ -76,14 +81,12 @@ class LeagueService {
         })
     }
     
-    func getGamesIdsForLeague(leagueId: String, onComplete: @escaping ([String]) -> ()) {
-        leaguesRef.child(leagueId).observeSingleEvent(of: .value, with: { (snapshot) in
+    func getGameIdsForLeague(leagueId: String, onComplete: @escaping ([String]) -> ()) {
+        leagueGamesRef.child(leagueId).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let league = snapshot.value as? Dictionary<String, Any> {
-                if let games = league["games"] as? Dictionary<String, Any> {
-                    onComplete(games.keys.sorted())
-                    return
-                }
+            if let games = snapshot.value as? Dictionary<String, Any> {
+                onComplete(games.keys.sorted())
+                return
             }
             
             onComplete([String]())

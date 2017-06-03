@@ -19,6 +19,11 @@ class GameCell: UICollectionViewCell {
         super.init(coder: aDecoder)
         
         layer.cornerRadius = 5.0
+        
+//        layer.shadowOpacity = 0.5
+//        layer.shadowOffset = CGSize(width: -2, height: 2)
+//        layer.shadowColor = UIColor.black.cgColor
+//        layer.shadowRadius = 2.0
     }
     
     func configureCell(game: Game) {

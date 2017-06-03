@@ -48,8 +48,17 @@ class UserService {
         usersRef.child(userId).child(DB_LEAGUES).updateChildValues([leagueId: true])
     }
     
-    func addLeagueToUserInvites(userId: String, leagueId: String) {
-        usersRef.child(userId).child(DB_INVITES).updateChildValues([leagueId: true])
+    func addLeagueToUserInvites(emailToInvite: String, currentUserEmail: String, leagueId: String, onComplete: @escaping (String?) -> ()) {
+        usersRef.queryOrdered(byChild: "email").queryEqual(toValue: emailToInvite).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let user = snapshot.value as? Dictionary<String, Any> {
+                self.usersRef.child(user.first!.key).child(DB_INVITES).updateChildValues([leagueId : currentUserEmail])
+                
+                onComplete(user.first!.key)
+                return
+            }
+            
+            onComplete(nil)
+        })
     }
     
     func removeLeagueFromUser(userId: String, leagueId: String) {
